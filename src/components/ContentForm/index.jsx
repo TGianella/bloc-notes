@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.scss';
 
-function ContentForm() {
+function ContentForm({ value, onChange }) {
 
   return (
-    <textarea></textarea>
+    <textarea value={value} onChange={onChange}></textarea>
   )
 }
 

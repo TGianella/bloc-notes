@@ -3,10 +3,10 @@ import SideNote from '../SideNote/index'
 import Button from '../Button/index'
 import './style.scss'
 
-function SidePanel({ onSelectionClick }) {
-  const notes = JSON.parse(localStorage.getItem('notes'));
+function SidePanel({ onSelectionClick, onNewNoteClick, notes }) {
   const listNotes = notes.map(note =>  
     <SideNote
+      key={note.id}
       id={note.id}
       onSelectionClick={onSelectionClick}
       title={note.title}
@@ -17,7 +17,7 @@ function SidePanel({ onSelectionClick }) {
   return (
     <div className="panel">
       <p>SidePanel</p>
-      <Button content="Add note" />      
+      <Button onClick={onNewNoteClick} content="Add note" />      
       {listNotes}
     </div>
   )

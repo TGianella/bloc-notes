@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.scss';
 
-function TitleForm() {
+function TitleForm({ value, onChange }) {
 
   return (
-    <input type="text"></input>
+    <input type="text" value={value} onChange={onChange}></input>
   )
 }
 

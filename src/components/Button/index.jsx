@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.scss';
 
-function Button({ content }) {
+function Button({ onClick, content }) {
 
   return (
-    <button>{content}</button>
+    <button onClick={onClick}>{content}</button>
   )
 }
 
