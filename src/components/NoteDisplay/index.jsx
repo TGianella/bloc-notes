@@ -3,13 +3,13 @@ import NoteTitle from '../NoteTitle'
 import NoteContent from '../NoteContent'
 import './style.scss'
 
-function NoteDisplay() {
+function NoteDisplay({ title, content }) {
 
   return (
     <div className="noteDisplay">
       <p>NoteDisplay</p>
-      <NoteTitle />
-      <NoteContent />
+      <NoteTitle content={title}/>
+      <NoteContent content={content}/>
     </div>
   )
 }

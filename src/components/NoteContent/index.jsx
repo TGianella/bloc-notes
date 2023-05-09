@@ -1,10 +1,19 @@
 import React from 'react';
+import Showdown from 'showdown';
 import './style.scss';
 
-function NoteContent() {
+const converter = new Showdown.Converter();
+
+function renderMarkdownToHTML(markdown) {
+  const renderedHTML = converter.makeHtml(markdown);
+  return {__html: renderedHTML};
+}
+
+function NoteContent({ content }) {
+  const markup = renderMarkdownToHTML(content)
 
   return (
-    <p>Note Content</p>
+    <p dangerouslySetInnerHTML={markup}></p>
   )
 }
 

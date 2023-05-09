@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.scss';
 
-function NoteTitle() {
+function NoteTitle({ content }) {
 
   return (
-    <h1>Note Title</h1>
+    <h1>{content}</h1>
   )
 }
 

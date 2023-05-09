@@ -9,7 +9,7 @@ function App() {
     <div className="container">
       <SidePanel />
       <div className="notes">
-        <NoteDisplay />
+        <NoteDisplay title="TITRE" content="contenu" />
         <MarkdownInput />
       </div>
     </div>
