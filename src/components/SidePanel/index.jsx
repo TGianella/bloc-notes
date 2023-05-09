@@ -7,6 +7,7 @@ function SidePanel({ onSelectionClick }) {
   const notes = JSON.parse(localStorage.getItem('notes'));
   const listNotes = notes.map(note =>  
     <SideNote
+      id={note.id}
       onSelectionClick={onSelectionClick}
       title={note.title}
       content={note.content}

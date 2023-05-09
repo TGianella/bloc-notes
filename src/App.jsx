@@ -11,8 +11,8 @@ function App() {
     
   }
 
-  function handleSelectionClick() {
-    console.log("clic");
+  function handleSelectionClick(id) {
+    console.log(id);
   }
 
   return (
