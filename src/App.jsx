@@ -6,11 +6,11 @@ import './app.scss'
 
 function App() {
   return (
-    <div class="container">
+    <div className="container">
       <SidePanel />
-      <div class="notes">
-        <MarkdownInput />
+      <div className="notes">
         <NoteDisplay />
+        <MarkdownInput />
       </div>
     </div>
   )
