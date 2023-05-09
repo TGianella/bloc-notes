@@ -1,9 +1,16 @@
 import React from 'react';
+import NoteTitle from '../NoteTitle'
+import NoteContent from '../NoteContent'
+import './style.scss'
 
 function NoteDisplay() {
 
   return (
-    <p>NoteDisplay</p>
+    <div className="noteDisplay">
+      <p>NoteDisplay</p>
+      <NoteTitle />
+      <NoteContent />
+    </div>
   )
 }
 
