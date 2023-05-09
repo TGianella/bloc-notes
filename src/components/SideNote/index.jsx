@@ -1,9 +1,9 @@
 import React from 'react';
 
-function SideNote({ title, content }) {
+function SideNote({ onSelectionClick, title, content }) {
 
   return (
-    <div>
+    <div onClick={onSelectionClick}>
       <h1>{title}</h1>
       <p>{content}</p>
     </div>
