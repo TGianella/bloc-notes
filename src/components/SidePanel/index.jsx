@@ -16,7 +16,6 @@ function SidePanel({ onSelectionClick, onNewNoteClick, notes }) {
 
   return (
     <div className="panel">
-      <p>SidePanel</p>
       <Button onClick={onNewNoteClick} content="Add note" />      
       {listNotes}
     </div>

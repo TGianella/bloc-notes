@@ -1,7 +1,10 @@
 button {
-  background-color: red;
+  background-color: #c70625;
   border: none;
   color: white;
-  width: 10em; 
-  height: 2em;
+  width: 70%; 
+  height: 50px;
+  margin: 10% auto;
+  font-size: x-large;
+  flex-shrink: 0;
 }

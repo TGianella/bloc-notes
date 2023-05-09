@@ -7,7 +7,6 @@ function NoteDisplay({ note }) {
 
   return (
     <div className="noteDisplay">
-      <p>NoteDisplay</p>
       <NoteTitle content={note.title}/>
       <NoteContent content={note.content}/>
     </div>

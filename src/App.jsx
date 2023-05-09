@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SidePanel from './components/SidePanel/index';
 import MarkdownInput from './components/MarkdownInput/index';
 import NoteDisplay from './components/NoteDisplay/index';
 import './app.scss'
 
 function App() {
+  const emptyNote = {id: 0, title: "Nouvelle note", content: "..."}
+  const notes = JSON.parse(localStorage.getItem('notes')) || [emptyNote];
   const [selectedId, setSelectedId] = useState(0);
-  const [currentNote, setCurrentNote] = useState({id: 0, title: "Nouvelle note", content: "..."});
-  const notes = JSON.parse(localStorage.getItem('notes')) || [currentNote];
+  const [currentNote, setCurrentNote] = useState(notes[0]);
 
   function handleTitleChange(e) {
     notes[selectedId].title = e.target.value;
@@ -29,10 +30,13 @@ function App() {
 
   function handleNewNoteClick() {
     const newNotes = [...notes]
-    newNotes.push({id: notes.length, title: "Nouvelle note", content: "..."});
+    const newNote = {...emptyNote, id: newNotes.length} 
+    newNotes.push(newNote);
     localStorage.setItem('notes', JSON.stringify(newNotes));
-    setSelectedId(notes.length);
+    setSelectedId(newNotes.length - 1);
+    setCurrentNote(newNote);
   }
+
 
 
   return (
@@ -54,4 +58,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

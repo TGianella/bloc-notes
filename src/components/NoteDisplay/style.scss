@@ -1,4 +1,6 @@
 .noteDisplay {
   margin-bottom: 50px;
   flex-grow: 1;
+  max-height: 70vh;
+  overflow: scroll;
 }
