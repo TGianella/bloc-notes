@@ -6,3 +6,5 @@ function MarkdownInput() {
     <p>MarkdownInput</p>
   )
 }
+
+export default MarkdownInput;

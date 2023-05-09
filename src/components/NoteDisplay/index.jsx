@@ -6,3 +6,5 @@ function NoteDisplay() {
     <p>NoteDisplay</p>
   )
 }
+
+export default NoteDisplay;
