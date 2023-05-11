@@ -1,61 +1,79 @@
 import { useState, useEffect } from 'react';
+import uuid from "react-uuid";
 import SidePanel from './components/SidePanel/index';
 import MarkdownInput from './components/MarkdownInput/index';
 import NoteDisplay from './components/NoteDisplay/index';
 import './app.scss'
 
 function App() {
-  const emptyNote = {id: 0, title: "Nouvelle note", content: "..."}
-  const notes = JSON.parse(localStorage.getItem('notes')) || [emptyNote];
-  const [selectedId, setSelectedId] = useState(0);
-  const [currentNote, setCurrentNote] = useState(notes[0]);
+  const [notes, setNotes] = useState(
+    localStorage.notes ? JSON.parse(localStorage.notes) : []
+  );
+  const [activeNote, setActiveNote] = useState(false);
+  console.log("active note = ", activeNote)
 
-  function handleTitleChange(e) {
-    notes[selectedId].title = e.target.value;
-    localStorage.setItem('notes', JSON.stringify(notes));
-    setCurrentNote({...currentNote, title: e.target.value});
-  }
-
-  function handleContentChange(e) {
-    notes[selectedId].content = e.target.value;
-    localStorage.setItem('notes', JSON.stringify(notes));
-    setCurrentNote({...currentNote, content: e.target.value});
-  }
-
-  function handleSelectionClick(id) {
-    setSelectedId(id);
-    setCurrentNote(notes[id]);
-  }
-
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   function handleNewNoteClick() {
-    const newNotes = [...notes]
-    const newNote = {...emptyNote, id: newNotes.length} 
-    newNotes.push(newNote);
-    localStorage.setItem('notes', JSON.stringify(newNotes));
-    setSelectedId(newNotes.length - 1);
-    setCurrentNote(newNote);
-  }
+    const newNote = {
+      id: uuid(),
+      title: "Untitled Note",
+      content: "",
+      lastModified: Date.now()
+    }; 
 
+    setNotes([newNote, ...notes]);
+    setActiveNote(newNote.id);
+  };
 
+  function handleDeleteClick(noteId) {
+    setNotes(notes.filter(({ id }) => id !== noteId))
+  };
 
+  function handleNoteChange(changedNote) {
+    const updatedNotesArr = notes.map((note) => {
+      if (note.id === changedNote.id) {
+        return changedNote;
+      }
+
+      return note;
+    });
+
+    setNotes(updatedNotesArr);
+  };
+
+  function getActiveNote() {
+    return notes.find(({ id }) => id === activeNote);
+  };
+  
   return (
     <div className="container">
       <SidePanel
-        onSelectionClick={handleSelectionClick}
-        onNewNoteClick={handleNewNoteClick}
         notes={notes}
+        onNewNoteClick={handleNewNoteClick}
+        onDeleteClick={handleDeleteClick}
+        activeNote={activeNote}
+        setActiveNote={setActiveNote}
       />
       <div className="notes">
-        <NoteDisplay note={currentNote} />
-        <MarkdownInput
-          note={currentNote}
-          onTitleChange={handleTitleChange}
-          onContentChange={handleContentChange}
-        />
+        {getActiveNote() ? (
+          <>
+            <NoteDisplay note={getActiveNote()} />
+            <MarkdownInput
+              note={getActiveNote()}
+              onUpdateNote={handleNoteChange}
+            />
+          </>
+        ) : (
+          <div className='no-active-note'>No active note</div>
+        )}
       </div>
     </div>
   )
 }
 
 export default App;
+
+// Hovers (sidebar + forms)

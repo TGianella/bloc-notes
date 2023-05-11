@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 25%;
+  width: 45%;
   border-right: solid 1px white;
-  align-items: center;
+  align-items: stretch;
   margin-right: 10px;
   overflow: scroll;
 }
+
 

@@ -3,14 +3,16 @@ import SideNote from '../SideNote/index'
 import Button from '../Button/index'
 import './style.scss'
 
-function SidePanel({ onSelectionClick, onNewNoteClick, notes }) {
-  const listNotes = notes.map(note =>  
+function SidePanel({ notes, onNewNoteClick, onDeleteClick, activeNote, setActiveNote }) {
+  const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
+
+  const listNotes = sortedNotes.map(note =>  
     <SideNote
+      isActive={note.id === activeNote}
       key={note.id}
-      id={note.id}
-      onSelectionClick={onSelectionClick}
-      title={note.title}
-      content={note.content}
+      note={note}
+      setActiveNote={setActiveNote}
+      onDeleteClick={onDeleteClick}
     />
   );
 

@@ -1,7 +1,40 @@
 .sideNote-title {
   font-size: large;
+  max-width: 75%;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .side-note {
-  width: 90%;
+  padding: 25px;
+}
+
+.side-note:hover {
+  background-color: #ddd;
+}
+
+.active, .active:hover {
+  background-color: #377a9b;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  button {
+    background: none;
+    border: none;
+    color: #c70625;
+    font-size: 1rem;    
+  }
+
+  h1 {
+    color: white;
+  }
+}
+
+.last-modified {
+  color: #999
 }
