@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import uuid from "react-uuid";
 import SidePanel from './components/SidePanel/index';
 import MarkdownInput from './components/MarkdownInput/index';
 import NoteDisplay from './components/NoteDisplay/index';
+import notesReducer from './notesReducer.js';
 import './app.scss'
 
 function App() {
-  const [notes, setNotes] = useState(
+  const [notes, dispatch] = useReducer(notesReducer,
     localStorage.notes ? JSON.parse(localStorage.notes) : []
   );
   const [activeNote, setActiveNote] = useState(false);
@@ -17,31 +18,28 @@ function App() {
   }, [notes]);
 
   function handleNewNoteClick() {
-    const newNote = {
-      id: uuid(),
-      title: "Untitled Note",
-      content: "",
-      lastModified: Date.now()
-    }; 
+    const newId = uuid();
 
-    setNotes([newNote, ...notes]);
-    setActiveNote(newNote.id);
+    dispatch({
+      type: 'added',
+      id: newId,
+    });
+
+    setActiveNote(newId);
   };
 
   function handleDeleteClick(noteId) {
-    setNotes(notes.filter(({ id }) => id !== noteId))
+    dispatch({
+      type: 'deleted',
+      id: noteId,
+    });
   };
 
   function handleNoteChange(changedNote) {
-    const updatedNotesArr = notes.map((note) => {
-      if (note.id === changedNote.id) {
-        return changedNote;
-      }
-
-      return note;
-    });
-
-    setNotes(updatedNotesArr);
+    dispatch({
+      type: 'changed',
+      note: changedNote,
+    })
   };
 
   function getActiveNote() {
@@ -73,6 +71,7 @@ function App() {
     </div>
   )
 }
+
 
 export default App;
 
