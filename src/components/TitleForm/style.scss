@@ -4,3 +4,7 @@ input {
   border: none;
   margin-bottom: 10px;
 }
+
+input:focus {
+  outline: none;
+}

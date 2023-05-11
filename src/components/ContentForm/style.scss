@@ -5,3 +5,7 @@ textarea {
   height: 20vh;
   margin-bottom: 10px;
 }
+
+textarea:focus {
+  outline: none;
+}
