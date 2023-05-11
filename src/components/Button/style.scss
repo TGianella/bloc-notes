@@ -1,10 +1,14 @@
 .button {
-  background-color: #c70625;
+  background: none;
   border: none;
   color: white;
-  width: 70%; 
   height: 50px;
-  margin: 10% auto;
-  font-size: x-large;
-  flex-shrink: 0;
+}
+
+.blue {
+  color: #377a9b;
+}
+
+.large {
+  font-size: large;
 }

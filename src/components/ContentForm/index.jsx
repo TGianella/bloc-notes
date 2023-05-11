@@ -5,7 +5,7 @@ function ContentForm({ value, onChange }) {
 
   return (
     <textarea
-      placeholder="Write your note here..."
+      placeholder="Write your note here."
       value={value}
       onChange={(e) => onChange("content", e.target.value)}
     >

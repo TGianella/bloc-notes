@@ -18,7 +18,10 @@ function SidePanel({ notes, onNewNoteClick, onDeleteClick, activeNote, setActive
 
   return (
     <div className="panel">
-      <Button onClick={onNewNoteClick} content="Add note" />      
+      <div className="side-panel-header">
+        <h1>Notes</h1>
+        <Button onClick={onNewNoteClick} content="Add" color="blue" size="large" />      
+      </div>
       {listNotes}
     </div>
   )
